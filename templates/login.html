@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MobilisAI · Connexion</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page {
+        font-family: "Segoe UI", sans-serif;
+        background: #f5f7fa;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .top-bar {
+        background: white;
+        padding: 14px 28px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .logo {
+        font-weight: 500;
+        font-size: 17px;
+        color: #4CAF50;
+    }
+
+    .center {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    .card {
+        background: white;
+        border: 0.5px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 36px 32px;
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .card-top {
+        text-align: center;
+        margin-bottom: 28px;
+    }
+
+    .icon-wrap {
+        width: 52px;
+        height: 52px;
+        background: #dcfce7;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 14px;
+        font-size: 26px;
+        color: #16a34a;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: 500;
+        color: #1e293b;
+        margin-bottom: 4px;
+    }
+
+    .card-sub {
+        font-size: 13px;
+        color: #64748b;
+    }
+
+    .field {
+        margin-bottom: 16px;
+    }
+
+    .field label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: #374151;
+        margin-bottom: 6px;
+    }
+
+    .field input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #1e293b;
+        background: #f8fafc;
+        outline: none;
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    .field input:focus {
+        border-color: #4CAF50;
+        background: white;
+    }
+
+    .field-pw {
+        position: relative;
+    }
+
+    .field-pw input {
+        padding-right: 40px;
+    }
+
+    .eye-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #94a3b8;
+        font-size: 17px;
+    }
+
+    .forgot {
+        text-align: right;
+        margin-top: -10px;
+        margin-bottom: 16px;
+    }
+
+    .forgot a {
+        font-size: 12px;
+        color: #4CAF50;
+        text-decoration: none;
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 11px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    .btn-login:hover {
+        background: #43a047;
+    }
+
+    .error-msg {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 13px;
+        color: #dc2626;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 16px;
+        font-size: 12px;
+        color: #94a3b8;
+    }
+</style>
+
+<body>
+    <div class="page">
+        <div class="top-bar">
+            <div class="logo"><i class="ti ti-bulb"></i> MobilisAI</div>
+        </div>
+
+        <div class="center">
+            <div class="card">
+                <div class="card-top">
+                    <div class="icon-wrap"><i class="ti ti-lock"></i></div>
+                    <p class="card-title">Connexion</p>
+                    <p class="card-sub">Accédez à votre espace MobilisAI</p>
+                </div>
+
+                {% if error %}
+                <div class="error-msg">
+                    <i class="ti ti-alert-circle"></i>
+                    <span>{{ error }}</span>
+                </div>
+                {% endif %}
+
+                <form method="POST" action="/login">
+                    <div class="field">
+                        <label for="email">Adresse email</label>
+                        <input type="email" id="email" name="email" placeholder="exemple@email.com" required />
+                    </div>
+
+                    <div class="field">
+                        <label for="password">Mot de passe</label>
+                        <div class="field-pw">
+                            <input type="password" id="password" name="password" placeholder="••••••••" required />
+                            <button type="button" class="eye-btn" onclick="togglePw()">
+                                <i class="ti ti-eye" id="eyeicon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="forgot"><a href="#">Mot de passe oublié ?</a></div>
+
+                    <button type="submit" class="btn-login">
+                        Se connecter <i class="ti ti-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer">© 2025 MobilisAI · Tous droits réservés</div>
+    </div>
+
+    <script>
+        function togglePw() {
+            const input = document.getElementById('password');
+            const icon = document.getElementById('eyeicon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'ti ti-eye-off';
+            } else {
+                input.type = 'password';
+                icon.className = 'ti ti-eye';
+            }
+        }
+    </script>
+</body>
+
+</html>
