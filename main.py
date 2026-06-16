@@ -6,6 +6,8 @@ from typing import Optional
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
+
+
 # ⚠️ Remplace par tes vrais identifiants
 USERS = {
     "admin@mobilisai.com": "motdepasse123"
